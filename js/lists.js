@@ -485,6 +485,7 @@ function checklistItems(checklistid, name) {
     checkItemsDiv.appendChild(checklistName)
 
     checklistDiv.appendChild(checkItemsDiv)
+    document.querySelector(".input").value = ""
 }
 function addTheCheckItem(e) {
     console.log(e.target)
