@@ -52,27 +52,11 @@ async function board() {
 }
 
 
-// function displayBoards() {
-//   console.log("enter")
-//   console.log(boards)
-//   document.querySelector(".boards").innerHTML = ""
-//   template = ""
-//   for (let i = 0; i < boards.length; i++)
-//     if (boards)
-
-//       template += `<div class='boa${i}' id='boardsdata' style='cursor:pointer' >` +
-//         `<img src='../images/trash-2.svg' onclick='deleteBoard(${i})'alt='deleteIcon'>` +
-//         `<span onclick='fetchLists("${boards[i].boardId}")'> ${boards[i].boardName} </span>` +
-//         "</div>";
-
-//   document.querySelector(".boards").innerHTML += template
-
-// }
-
 function displayBoards() {
   // console.log("boards", boards.length)
   document.querySelector(".boards").innerHTML = ""
-  for (let i = 0; i < boards.length; i++) {
+  boards.forEach((ele, i) => {
+
     if (boards) {
       const newDiv = document.createElement("div")
       newDiv.addEventListener("click", () => fetchLists(boards[i].boardId))
@@ -103,7 +87,7 @@ function displayBoards() {
       document.querySelector(".boards").appendChild(newDiv)
     }
 
-  }
+  })
 }
 
 

@@ -1,12 +1,6 @@
-// This code sample uses the 'node-fetch' library:
-// https://www.npmjs.com/package/node-fetch
-// const fetch = require('node-fetch');
+
 selectedBoard = ""
 let cardssssss = ""
-// const load = document.addEventListener("DOMContentLoaded", () => {
-//     fetchLists(selectedBoard);
-// })
-// const input = document.querySelector(".addTxt")
 
 let inp;
 function inputTag() {
@@ -243,6 +237,7 @@ function displayChecklist(cardId, event) {
     nameOfCard.innerText = event.target.innerText
     let closeImg = document.createElement("img")
     closeImg.src = "../images/x.svg"
+    closeImg.style.cursor = "pointer"
     closeImg.addEventListener("click", () => {
         document.querySelector(".checklistForCard").innerHTML = ""
         document.querySelector(".checklist").style.display = "none"
@@ -310,15 +305,14 @@ function displayChecklistPopup(text, da) {
             //template
             let checklistName_trash = document.createElement("div")
             checklistName_trash.className = "listName-trash"
-
             let checklistName = document.createElement("span")
             checklistName.innerText = text
             let checkImage = document.createElement("img")
             checkImage.src = "../images/check-square.svg"
             checkImage.style.width = "15px"
             checkImage.style.height = "15px"
-            checklistName.appendChild(checkImage)
-            checklistName.innerText = text
+            checklistName.insertAdjacentElement("afterbegin", checkImage)
+            // checklistName.innerText = text
             let deleteChecklist = document.createElement("img")
             deleteChecklist.src = "../images/trash-2.svg"
             checklistName_trash.appendChild(checklistName)
@@ -350,7 +344,7 @@ function displayChecklistInCards(id) {
         .then(checklistsInCard => {
 
             console.log(checklistsInCard)
-            for (let i = 0; i < checklistsInCard.length; i++) {
+            checklistsInCard.forEach((ele, i) => {
                 const idOfCard = checklistsInCard[i].idOfCard
                 // name of the checklist
                 const name = checklistsInCard[i].name
@@ -381,7 +375,7 @@ function displayChecklistInCards(id) {
                 checkImage.src = "../images/check-square.svg"
                 checkImage.style.width = "15px"
                 checkImage.style.height = "15px"
-                checklistName.appendChild(checkImage)
+                checklistName.insertAdjacentElement("afterbegin", checkImage)
                 let deleteChecklist = document.createElement("img")
                 deleteChecklist.src = "../images/trash-2.svg"
                 checklistName_trash.appendChild(checklistName)
@@ -402,19 +396,10 @@ function displayChecklistInCards(id) {
                 // console.log(totalId[i].cardId, totalId[i].checklistId)
                 // to delete the checklist
                 deleteChecklist.addEventListener("click", () => deleteTheChecklist(totalId[i].cardId, totalId[i].checklistId))
-
-            }
-            console.log(totalId)
-            // for (let i = 0; i < totalId.length; i++) {
-            //     fetch(`https://api.trello.com/1/checklists/${totalId[i].checklistId}/checkItems?key=d71118bbc2a871363416ddebdde1f69b&token=f01c685ff3583f725a159937a5add47553bef672fc1df6e5f49dda5e1854340a`, {
-            //         method: 'GET'
-            //     })
-            //         .then(res => res.json())
-            //         .then(res => {
-            //             console.log(res)
-            //         })
-
+            })
+            // for (let i = 0; i < checklistsInCard.length; i++) {
             // }
+            console.log(totalId)
 
         })
 
@@ -455,15 +440,7 @@ function deleteTheChecklist(card, id) {
 //checklist items section
 
 
-// function displayChecklistItems(e) {
-//     // fetch(`https://api.trello.com/1/checklists/${id}/checkItems??key=d71118bbc2a871363416ddebdde1f69b&token=f01c685ff3583f725a159937a5add47553bef672fc1df6e5f49dda5e1854340a&name=${name}`, {
-//     //     method: 'POST'
-//     // })
-//     // .then()
-//     document.querySelector(".checkItemsPopup").style.display = "block"
-//     console.log(e.target)
 
-// }
 document.querySelector(".checkitemsSubmit").addEventListener("click", (e) => displayTheCheckItems(e))
 document.querySelector(".checkitemsClose").addEventListener("click", () => closeTheCheckitemsPopup())
 function closeTheCheckitemsPopup() {
@@ -487,23 +464,27 @@ function displayTheCheckItems(e) {
         .then(res => {
             console.log(res)
             document.querySelector(".checkItemsPopup").style.display = "none"
-            let checklistDiv = document.getElementById(`${res.idChecklist}`)
-            // console.log(checklistDiv.id)
-            let checkItemsDiv = document.createElement("div")
+            //to display the checklistItems
+            checklistItems(`${res.idChecklist}`, `${res.name}`)
 
-            let checkBox = document.createElement("input")
-            checkBox.style.marginRight = "5px"
-            checkBox.setAttribute("type", "checkbox")
-            let checklistName = document.createElement("span")
-            checklistName.innerText = `${res.name}`
-            checkItemsDiv.appendChild(checkBox)
-            checkItemsDiv.appendChild(checklistName)
-
-            checklistDiv.appendChild(checkItemsDiv)
         })
     // 
 
 
+}
+function checklistItems(checklistid, name) {
+    let checklistDiv = document.getElementById(checklistid)
+    // console.log(checklistDiv.id)
+    let checkItemsDiv = document.createElement("div")
+    let checkBox = document.createElement("input")
+    checkBox.style.marginRight = "5px"
+    checkBox.setAttribute("type", "checkbox")
+    let checklistName = document.createElement("span")
+    checklistName.innerText = name
+    checkItemsDiv.appendChild(checkBox)
+    checkItemsDiv.appendChild(checklistName)
+
+    checklistDiv.appendChild(checkItemsDiv)
 }
 function addTheCheckItem(e) {
     console.log(e.target)
@@ -529,22 +510,9 @@ function displayTheItemsInChecklist(id) {
                         console.log(res, "res1")
                         document.querySelector(".checkItemsPopup").style.display = "none"
                         // if (res.length != 0) {
-                        for (let i = 0; i < res.length; i++) {
-                            console.log("hiiii")
-                            let checklistDiv = document.getElementById(`${res[i].idChecklist}`)
-                            // console.log(checklistDiv.id)
-                            let checkItemsDiv = document.createElement("div")
-
-                            let checkBox = document.createElement("input")
-                            checkBox.style.marginRight = "5px"
-                            checkBox.setAttribute("type", "checkbox")
-                            let checklistName = document.createElement("span")
-                            checklistName.innerText = `${res[i].name}`
-                            checkItemsDiv.appendChild(checkBox)
-                            checkItemsDiv.appendChild(checklistName)
-
-                            checklistDiv.appendChild(checkItemsDiv)
-                        }
+                        res.forEach((res, i) => {
+                            checklistItems(`${res[i].idChecklist}`, `${res[i].name}`)
+                        })
                     }
                     )
             }
