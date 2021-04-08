@@ -1,12 +1,6 @@
-// This code sample uses the 'node-fetch' library:
-// https://www.npmjs.com/package/node-fetch
-// const fetch = require('node-fetch');
+
 selectedBoard = ""
 let cardssssss = ""
-// const load = document.addEventListener("DOMContentLoaded", () => {
-//     fetchLists(selectedBoard);
-// })
-// const input = document.querySelector(".addTxt")
 
 let inp;
 function inputTag() {
@@ -406,16 +400,6 @@ function displayChecklistInCards(id) {
             // for (let i = 0; i < checklistsInCard.length; i++) {
             // }
             console.log(totalId)
-            // for (let i = 0; i < totalId.length; i++) {
-            //     fetch(`https://api.trello.com/1/checklists/${totalId[i].checklistId}/checkItems?key=d71118bbc2a871363416ddebdde1f69b&token=f01c685ff3583f725a159937a5add47553bef672fc1df6e5f49dda5e1854340a`, {
-            //         method: 'GET'
-            //     })
-            //         .then(res => res.json())
-            //         .then(res => {
-            //             console.log(res)
-            //         })
-
-            // }
 
         })
 
@@ -456,15 +440,7 @@ function deleteTheChecklist(card, id) {
 //checklist items section
 
 
-// function displayChecklistItems(e) {
-//     // fetch(`https://api.trello.com/1/checklists/${id}/checkItems??key=d71118bbc2a871363416ddebdde1f69b&token=f01c685ff3583f725a159937a5add47553bef672fc1df6e5f49dda5e1854340a&name=${name}`, {
-//     //     method: 'POST'
-//     // })
-//     // .then()
-//     document.querySelector(".checkItemsPopup").style.display = "block"
-//     console.log(e.target)
 
-// }
 document.querySelector(".checkitemsSubmit").addEventListener("click", (e) => displayTheCheckItems(e))
 document.querySelector(".checkitemsClose").addEventListener("click", () => closeTheCheckitemsPopup())
 function closeTheCheckitemsPopup() {
@@ -509,6 +485,7 @@ function checklistItems(checklistid, name) {
     checkItemsDiv.appendChild(checklistName)
 
     checklistDiv.appendChild(checkItemsDiv)
+    document.querySelector(".input").value = ""
 }
 function addTheCheckItem(e) {
     console.log(e.target)
@@ -534,25 +511,9 @@ function displayTheItemsInChecklist(id) {
                         console.log(res, "res1")
                         document.querySelector(".checkItemsPopup").style.display = "none"
                         // if (res.length != 0) {
-                        res.forEach((res, i) => {
+                        res.forEach((ele, i) => {
                             checklistItems(`${res[i].idChecklist}`, `${res[i].name}`)
                         })
-                        // for (let i = 0; i < res.length; i++) {
-                        // console.log("hiiii")
-                        // checklistItems(`${res[i].idChecklist}`, `${res[i].name}`)
-                        // let checklistDiv = document.getElementById(`${res[i].idChecklist}`)
-                        // // console.log(checklistDiv.id)
-                        // let checkItemsDiv = document.createElement("div")
-                        // let checkBox = document.createElement("input")
-                        // checkBox.style.marginRight = "5px"
-                        // checkBox.setAttribute("type", "checkbox")
-                        // let checklistName = document.createElement("span")
-                        // checklistName.innerText = `${res[i].name}`
-                        // checkItemsDiv.appendChild(checkBox)
-                        // checkItemsDiv.appendChild(checklistName)
-
-                        // checklistDiv.appendChild(checkItemsDiv)
-                        // }
                     }
                     )
             }
