@@ -1,0 +1,24 @@
+.checkItemsPopup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.719);
+  display: none;
+}
+.checkItems-input {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  border: 2px solid rgba(0, 0, 0, 0.342);
+  /* margin: 5px; */
+}
+.checkitemsButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+.input {
+  margin: 5px;
+}

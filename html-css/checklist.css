@@ -1,0 +1,83 @@
+.checklist {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.719);
+  display: none;
+}
+.checklistForCard {
+  background-color: white;
+  position: relative;
+  top: 10vh;
+  left: 25vw;
+  width: 50vw;
+  height: 70vh;
+  border-radius: 5px;
+}
+.name-x {
+  display: flex;
+  justify-content: space-between;
+}
+.twoDivs {
+  display: flex;
+}
+.buttonsOfDivTwo {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+.checklist-input {
+  margin: 5px;
+}
+.divOne {
+  position: absolute;
+
+  /* background-color: red; */
+  width: 50%;
+  height: 70%;
+  top: 10%;
+  left: 5%;
+  border: 2px solid rgba(0, 0, 0, 0.342);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.divTwo {
+  position: absolute;
+  /* background-color: grey; */
+  left: 70%;
+  top: 10%;
+  width: 35%;
+  height: 7%;
+  /* border: 5px solid black; */
+  cursor: pointer;
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.719);
+  display: none;
+}
+.input-btn {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  border: 2px solid rgba(0, 0, 0, 0.342);
+  /* margin: 5px; */
+}
+.listName-trash {
+  display: flex;
+  justify-content: space-between;
+}
+.listName-trash img:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.dataOfChecklist {
+  margin: 5px 0;
+}
